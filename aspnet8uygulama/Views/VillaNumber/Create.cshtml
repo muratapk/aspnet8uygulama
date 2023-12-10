@@ -1,0 +1,64 @@
+﻿@model EntityLayer.Entities.VillaNumber
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<div class="w-100 card-border-0 p-4">
+    <div class="card-header bg-success bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Yeni Kayıt Sayfası</h2>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-body border p-4">
+    <form method="post" class="row">
+        <div class="p-3">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-floating py-2 col-12">
+                <select  asp-for="VillaId" asp-items="@ViewBag.VillaTipi" class="form-control border shadow">
+                    <option selected>--Villa Seçimi Yapınız--</option>
+                </select>
+                <label asp-for="VillaId" class="ms-2"></label>
+                <span asp-validation-for="VillaId" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating py-2 col-12">
+                
+                <input asp-for="Villa_Number" class="form-control border shadow" />
+                <label asp-for="Villa_Number" class="ms-2"></label>
+                <span asp-validation-for="Villa_Number" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating py-2 col-12">
+                <input asp-for="SpecialDetails" class="form-control border shadow" />
+                <label asp-for="SpecialDetails" class="ms-2"></label>
+                <span asp-validation-for="SpecialDetails" class="text-danger"></span>
+            </div>
+          
+            
+           
+            <div class="row pt-2">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Kayıt Ekle
+                    </button>
+                </div>
+            </div>
+
+            <div class="row pt-2">
+                <div class="col-6 col-md-3">
+                    <a asp-controller="Villas" asp-action="Index" class="btn btn-secondary w-100">
+                        İptal
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

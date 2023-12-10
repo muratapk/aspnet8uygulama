@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EntityLayer.Entities.VillaNumber>
+<div class="card header bg-success bg-gradient m-lg-0 py-3">
+    <h1>Villa Listesi</h1>
+</div>
+
+<div class="card-body border p-4">
+    <div class="row pb-3">
+        <div class="col-6 offset-6 text-end">
+            <a asp-controller="VillaNumber" asp-action="Create" class="btn btn-secondary">
+                <i class="bi bi-bookmark-plus-fill"></i>
+                Yeni Kayıt
+            </a>
+
+        </div>
+    </div>
+
+</div>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Villa Numarası</th>
+        <th>Villa Id</th>
+        <th>Çeşitli Detaylar</th>
+       
+        <th></th>
+    </tr>
+    @foreach (var obj in Model)
+    {
+        <tr>
+            <td>@obj.Villa_Number</td>
+            <td>@obj.VillaId</td>
+            <td>@obj.SpecialDetails</td>
+           
+            <td>
+                <div class="w-75 btnbtn-group" role="group">
+                    <a asp-action="Edit" asp-controller="VillaNumber" asp-route-villaId="@obj.Villa_Number" class="btn btn-warning mx-2">Edit</a>
+                    <a asp-action="Delete" asp-controller="VillaNumber" asp-route-villaId="@obj.Villa_Number" class="btn btn-danger mx-2">Delete</a>
+                </div>
+            </td>
+        </tr>
+    }
+</table>

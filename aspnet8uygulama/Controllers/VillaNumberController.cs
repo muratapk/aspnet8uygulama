@@ -1,32 +1,39 @@
 ﻿using DataAccessLayer.Data;
 using EntityLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace aspnet8uygulama.Controllers
 {
-    public class VillasController : Controller
+    public class VillaNumberController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public VillasController(ApplicationDbContext context)
+        public VillaNumberController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult Index()
         {
-            var villas=_context.Villas.ToList();
+            var villas = _context.VillaNumbers.ToList();
             return View(villas);
         }
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> list=_context.Villas.ToList().Select(u=>new SelectListItem
+            {
+                Text= u.Name,
+                Value=u.Id.ToString()
+            });
+            ViewBag.VillaTipi = list;
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Villa villa)
+        public IActionResult Create(VillaNumber obj)
         { 
             if(ModelState.IsValid) {
-                _context.Villas.Add(villa);
+                _context.VillaNumbers.Add(obj);
                 _context.SaveChanges();
                 TempData["success"] = "Kayıt Başarılı Yeni Kayıt Yapıldı";
                 return RedirectToAction("Index");
